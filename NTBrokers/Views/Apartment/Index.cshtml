@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ApartmentModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Add new Apartment</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApartmentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Broker)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApartmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Broker)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ApartmentId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ApartmentId}) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ApartmentId })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

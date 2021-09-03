@@ -1,0 +1,82 @@
+﻿@model NTBrokers.Models.RealEstateModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Update Apartments</h1>
+
+<h4>ApartmentModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @Html.HiddenFor(a => a.Apartment.ApartmentId)
+
+            <div class="form-group">
+                <label asp-for="Apartment.ApartmentType" class="control-label"></label>
+                <div>
+                    @Html.DropDownListFor(
+                   model => model.Apartment.ApartmentType,
+                   new SelectList(Model.Apartment.ApartmentTypes, Model.Apartment.ApartmentTypes),
+                   new { @class = "search-dropdown", name = "Types" })
+                </div>
+            </div>            <div class="form-group">
+                <label asp-for="Apartment.City" class="control-label"></label>
+                <input asp-for="Apartment.City" class="form-control" />
+                <span asp-validation-for="Apartment.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apartment.Street" class="control-label"></label>
+                <input asp-for="Apartment.Street" class="form-control" />
+                <span asp-validation-for="Apartment.Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apartment.HouseNo" class="control-label"></label>
+                <input asp-for="Apartment.HouseNo" class="form-control" />
+                <span asp-validation-for="Apartment.HouseNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apartment.FloorOf" class="control-label"></label>
+                <input asp-for="Apartment.FloorOf" class="form-control" />
+                <span asp-validation-for="Apartment.FloorOf" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apartment.Floors" class="control-label"></label>
+                <input asp-for="Apartment.Floors" class="form-control" />
+                <span asp-validation-for="Apartment.Floors" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apartment.Area" class="control-label"></label>
+                <input asp-for="Apartment.Area" class="form-control" />
+                <span asp-validation-for="Apartment.Area" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apartment.Company" class="control-label"></label>
+                <div>
+                    @Html.DropDownListFor(x => x.Apartment.CompanyId, new SelectList(Model.Companies, "CompanyId", "CompanyName"), null, new { @class = "form-control" })
+                </div>
+            </div>
+            
+            @*<div class="form-group">
+            <label asp-for="Apartment.Broker" class="control-label"></label>
+            <div>
+                @Html.DropDownListFor(x => x.Apartment.Broker, new SelectList(Model.Brokers, "ID", "FullName"), null, new { @class = "form-control" })
+            </div>
+        </div>*@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,57 @@
+﻿@model NTBrokers.Models.RealEstateModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Update Company info</h1>
+
+<h4>*Company*</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Company.CompanyName" class="control-label"></label>
+                <input asp-for="Company.CompanyName" class="form-control" />
+                <span asp-validation-for="Company.CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Company.City" class="control-label"></label>
+                <input asp-for="Company.City" class="form-control" />
+                <span asp-validation-for="Company.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Company.Street" class="control-label"></label>
+                <input asp-for="Company.Street" class="form-control" />
+                <span asp-validation-for="Company.Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Company.Address" class="control-label"></label>
+                <input asp-for="Company.Address" class="form-control" />
+                <span asp-validation-for="Company.Address" class="text-danger"></span>
+            </div>
+            @Html.HiddenFor(c => c.Company.CompanyId)
+            <div class="form-group">
+                <label asp-for="Company.Brokers" class="control-label"></label>
+                <div>
+                    @Html.ListBoxFor(model => model.BrokersIds, new MultiSelectList(Model.Brokers, "BrokerId", "FullName"), new { multiple = "multiple", @class = "form-control" })
+                </div>
+            </div>
+            @*var brokers = Model.Brokers.Select(b => new { Id = b.Id, FullName = b.ToString() }).ToList();*@
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

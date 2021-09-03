@@ -1,0 +1,35 @@
+﻿@model NTBrokers.Models.RealEstateModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Companies</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Companies[0].CompanyName)</th>
+            <th>@Html.DisplayNameFor(model => model.Companies[0].City)</th>
+            <th>@Html.DisplayNameFor(model => model.Companies[0].Street)</th>
+            <th>@Html.DisplayNameFor(model => model.Companies[0].Address)</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Companies) {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
+            <td>@Html.DisplayFor(modelItem => item.City)</td>
+            <td>@Html.DisplayFor(modelItem => item.Street)</td>
+            <td>@Html.DisplayFor(modelItem => item.Address)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CompanyId }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

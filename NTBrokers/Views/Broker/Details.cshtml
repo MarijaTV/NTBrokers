@@ -1,0 +1,35 @@
+﻿@model BrokerDetailsModel
+
+<div class="container">
+
+    <div class="mb-3">
+        @Html.ActionLink("Add apartment", "AssignApartments", "Broker", new { id = $"{Model.BrokerId}" }, new { @class = "btn btn-outline-primary" })
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Apartment</th>
+                <th scope="col">Address</th>
+                <th scope="col">Area</th>
+                <th scope="col">Company</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Apartments)
+            {
+            <tr>
+                <td>@item.ApartmentName</td>
+                <td>@item.Street g. @item.HouseNo</td>
+                <td>@item.Area</td>
+                <td>@item.Company</td>
+                <td>
+                    @Html.ActionLink("Unassign", "UnAssignApartment", "Brokers", new { apartmentId = $"{item.ApartmentId}", brokerId = $"{Model.BrokerId}" })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>

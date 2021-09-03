@@ -1,0 +1,21 @@
+﻿
+@model BrokerDetailsModel
+
+<h3>Add new apartment</h3>
+
+@using (Html.BeginForm("AssignApartments", "Broker", FormMethod.Post))
+{
+    <div class="row mb-3">
+        <div class="mr-3">
+            @Html.ListBoxFor(x => x.BrokersApartmentsIds, new MultiSelectList(Model.Apartments, "ApartmentId", "ApartmentName"), new { multiple = "multiple", style = "width:800px" })
+        </div>
+        <div>
+            @Html.HiddenFor(x => x.BrokerId)
+        </div>
+
+        <div>
+            <input type="submit" value="Update" class="btn btn-outline-primary" />
+        </div>
+    </div>
+
+}
